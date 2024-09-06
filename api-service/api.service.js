@@ -51,7 +51,7 @@ const getWeather = async() => {
     if(!token[0]) {
         throw new Error('Не задан ключ API. Создайте его командой -t[API_KEY]');
     } else if(!lang[0]) {
-        throw new Error('Не задан город(-а). Создайте список командой -s[CITY]');
+        throw new Error('Не заданы Языковые настройки. Задать настройки -l[ru]');
     }  else if(!city) {
         throw new Error('Не задан город(-а). Создайте список командой -s[CITY]');
     }    
