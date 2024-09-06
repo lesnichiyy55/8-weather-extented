@@ -5,7 +5,7 @@ import {saveToken, saveCity, saveLanguage} from './saveargs/saveargs.js'
 
 
 const initCLI = () => {
-    const args = getArgs(process.argv);   
+    const args = getArgs(process.argv);
 
     if(args.t) {
         return saveToken(args.t)
@@ -20,6 +20,7 @@ const initCLI = () => {
     }
 
     if(args.l) {
+        console.log(args.l)
         saveLanguage(args.l);
     }
 
