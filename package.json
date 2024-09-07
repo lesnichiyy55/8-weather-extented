@@ -1,0 +1,21 @@
+{
+  "name": "8-weather-extented",
+  "version": "1.0.0",
+  "description": "Создать CLI-программу.",
+  "main": "weather.js",
+  "type": "module",
+  "bin": {
+    "weather": "weather.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexander Kouleshov",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "chalk": "^5.3.0",
+    "dedent-js": "^1.0.1",
+    "moment-timezone": "^0.5.45"
+  }
+}
