@@ -22,9 +22,6 @@ const saveKeyValue = async (key, value) => {
     }
 
     data[key] = value;
-
-    console.log(data)
-
     await promises.writeFile(filePath, JSON.stringify(data))
 }
 
@@ -32,7 +29,6 @@ const getKeyValue = async (data) => {
     if(await isExist(filePath)) {
         const file = await promises.readFile(filePath);
         const data = JSON.parse(file);
-        
         return data
      } return undefined
 }
@@ -46,7 +42,7 @@ const isExist = async (path) => {
   }
 }
 
-const saveToken = async (token) => {    
+const saveToken = async (token) => {
 
     if(!token.length) {
         printError("Не передан токен")

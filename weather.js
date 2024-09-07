@@ -10,30 +10,24 @@ const initCLI = () => {
     if(args.t) {
         return saveToken(args.t)
     }
-
     if(args.s) {
         return saveCity(args.s)
-    }    
-
+    }
     if(args.h) {
         printHelp();
     }
-
     if(args.l) {
-        console.log(args.l)
         saveLanguage(args.l);
+    } else {
+        getForcast();
     }
-
-    getForcast();
-    
 }
 
 const getForcast = async () => {
 
     try {
         await getWeather();
-     } catch (error) {
- 
+     } catch (error) { 
          switch(error?.response?.status) {
              case 404:
                  printError('Неверно указан город');

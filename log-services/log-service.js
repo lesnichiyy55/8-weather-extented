@@ -37,7 +37,7 @@ const printHelp = () => {
 
 };
 
-const printWeather = (weather) => {
+const printWeather = (weather, lang) => {
     const icon = getIcon(weather.weather[0].icon);
     const city = weather.name;
     const dateTime = getLocalDateTime(weather.dt, weather.timezone) 
@@ -47,22 +47,31 @@ const printWeather = (weather) => {
     const maxTemp = `${Math.round(weather.main.temp_max)}°`;
     const minTemp = `${Math.round(weather.main.temp_min)}°`;
     const humidity = `💧 ${weather.main.humidity}%`;
-    const wind = `🚩 ${weather.wind.speed} м/с`
+    const wind = `🚩 ${weather.wind.speed} м/с`;
 
-   
+    const strRu = dedent`
+    ${city}. ${icon}
+
+    Метеоданные по местному времени - ${dateTime.localDate}, ${dateTime.localTime}:
+    Температура в течение дня ${temp}. ${desc}.
+
+    ${chalk.bgRedBright(maxTemp)} ${chalk.bgBlueBright(minTemp)} | ${humidity} | ${wind}
+    ________________________________________________________________________________________
+
+    `;
+
+    const strEn =dedent`
+    ${city}. ${icon}
+
+    Weather data in local time - ${dateTime.localDate}, ${dateTime.localTime}:
+    Temperature during the day ${temp}. ${desc}.
+
+    ${chalk.bgRedBright(maxTemp)} ${chalk.bgBlueBright(minTemp)} | ${humidity} | ${wind}
+    ________________________________________________________________________________________
+
+    `
+    lang == 'en' ? console.log(strEn) : console.log(strRu)
     
-    
-    console.log(
-        dedent`
-         ${city}. ${icon}
-
-         Метеоданные по местному времени - ${dateTime.localDate}, ${dateTime.localTime}:
-         Температура в течение дня ${temp}. ${desc}.
-
-         ${chalk.bgRedBright(maxTemp)} ${chalk.bgBlueBright(minTemp)} | ${humidity} | ${wind}
-         ________________________________________________________________________________________
-
-         `)
 }
 
 export {printError, printSuccess, printHelp, printWeather}

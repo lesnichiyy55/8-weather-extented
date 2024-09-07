@@ -34,30 +34,31 @@ const getData = async (c, token, lang) => {
     const {data} = await axios.get('https://api.openweathermap.org/data/2.5/weather', {
         params: {
             q: c,
-            appid: token[0],
-            lang: lang[0],
+            appid: token,
+            lang: lang,
             units: 'metric'
         }
-    })
+    });
 
-    printWeather(data);
+    printWeather(data, lang);
 }
 
 
 const getWeather = async() => {
     
-    const {token, city, lang} = await getKeyValue(TOKEN_DICTIONARY);
+    let {token, city, lang} = await getKeyValue(TOKEN_DICTIONARY);
 
-    if(!token[0]) {
+    if(!token) {
         throw new Error('Не задан ключ API. Создайте его командой -t[API_KEY]');
-    } else if(!lang[0]) {
-        throw new Error('Не заданы Языковые настройки. Задать настройки -l[ru]');
     }  else if(!city) {
         throw new Error('Не задан город(-а). Создайте список командой -s[CITY]');
-    }    
+    } else if (!lang) {
+        lang = 'en'
+    }
+    
 
     city.forEach(c => {
-        return getData(c, token, lang)
+        return getData(c, token[0], lang.toString())
     })
 }
 
